@@ -1,53 +1,36 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="HopfenMatch">
-<meta name="application-name" content="HopfenMatch">
-<meta name="theme-color" content="#faf6ed">
-<meta name="format-detection" content="telephone=no">
-<meta name="description" content="HopfenMatch – Gute Biere. Gute Leute. Biere bewerten, Bier-Matches mit Freunden finden und Tasting-Abende planen.">
-<title>HopfenMatch</title>
-<link rel="manifest" href="manifest.webmanifest">
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HopfenMatch ist umgezogen</title>
+<meta http-equiv="refresh" content="2;url=https://hopfenmatch.github.io/">
+<link rel="canonical" href="https://hopfenmatch.github.io/">
 <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167.png">
-<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152.png">
-<link rel="preload" href="fonts/lora.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/sourcesans3.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/app.css?v=6">
-</head>
-<body>
-<div id="brandside"><h1>Hopfen<span>Match</span></h1><p>Gute Biere. Gute Leute.</p><p style="font-size:14px">Sascha und Martin bewerten Biere, finden Bier-Matches und planen gemeinsam Tasting-Abende.</p></div>
-<div id="hint">Am iPhone in Safari öffnen und über <b>Teilen → Zum Home-Bildschirm</b> als App installieren.</div>
-<div id="stage"><div id="device">
- <div id="screen">
-  <div id="statusbar"><span id="sbtime">9:41</span><span class="sb-r" id="sbicons"></span></div>
-  <div id="island"></div>
-  <div class="layer tabs">
-   <section class="tabview on" id="tab-start"></section>
-   <section class="tabview" id="tab-rangliste"></section>
-   <section class="tabview" id="tab-freunde"></section>
-   <section class="tabview" id="tab-planen"></section>
-  </div>
-  <div class="shade" id="shade"></div>
-  <nav id="nav"></nav>
-  <button id="plus" aria-label="Bier bewerten"></button>
-  <div id="sheets"></div>
-  <div id="overlay"></div>
-  <div id="toast"></div>
-  <div id="homebar"></div>
- </div>
-</div></div>
-<script src="js/data.js?v=6"></script>
-<script src="js/catalog.js?v=6"></script>
-<script src="js/bottle.js?v=6"></script>
-<script src="js/bounce.js?v=6"></script>
-<script src="js/app.js?v=6"></script>
-</body>
-</html>
+<style>
+html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(120% 70% at 50% 0%,#fffaf0 0%,#faf3e4 45%,#f3e4c6 100%);color:#3a1609}
+main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}
+img{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 22px rgba(120,70,10,.18)}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:28px;margin:22px 0 8px}
+p{margin:0 0 6px;color:#6d5a4c;font-size:16px;line-height:1.45;max-width:320px}
+a.btn{display:inline-block;margin-top:20px;padding:14px 26px;border-radius:14px;background:linear-gradient(180deg,#e3a12a,#cf8812);color:#fff;font-weight:700;text-decoration:none;font-size:17px;box-shadow:0 3px 10px rgba(200,130,20,.3)}
+small{display:block;margin-top:18px;color:#9a8a7c;font-size:13px;max-width:300px;line-height:1.4}
+</style></head>
+<body><main>
+<img src="icons/icon-192.png" alt="HopfenMatch">
+<h1>HopfenMatch ist umgezogen</h1>
+<p>Die neue Adresse ist</p>
+<p><b>hopfenmatch.github.io</b></p>
+<a class="btn" id="go" href="https://hopfenmatch.github.io/">Zu HopfenMatch 🍻</a>
+<small>Du wirst automatisch weitergeleitet. Bitte melde dich dort einmal neu an – deine Bewertungen sind auf dem Server gespeichert. Wer die App auf dem Home-Bildschirm hatte: einfach von der neuen Adresse neu hinzufügen.</small>
+</main>
+<script>
+// Alten Service Worker + Caches entfernen, damit installierte Apps nicht auf der alten Version hängen bleiben
+(async function(){
+  var target='https://hopfenmatch.github.io/';
+  try{if('serviceWorker' in navigator){var rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(function(r){return r.unregister()}))}}catch(e){}
+  try{if(window.caches){var ks=await caches.keys();await Promise.all(ks.map(function(k){return caches.delete(k)}))}}catch(e){}
+  try{localStorage.removeItem('hopfenmatch.sync')}catch(e){}
+  setTimeout(function(){location.replace(target)},600);
+})();
+</script>
+</body></html>
